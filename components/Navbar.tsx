@@ -11,6 +11,7 @@ const navItems = [
   { name: 'O mnie', href: '/about' },
   { name: 'Blog', href: '/blog' },
   { name: 'Projekty', href: '/projects' },
+  { name: 'Status', href: '/status' },
   { name: 'Kontakt', href: '/contact' },
 ];
 
