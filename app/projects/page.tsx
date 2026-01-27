@@ -183,19 +183,64 @@ export default function ProjectsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
-            className="mt-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white"
+            className="mt-20"
           >
-            <h2 className="text-3xl font-bold mb-6 text-center">Homelab Infrastructure</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              <StatCard icon={<SiProxmox />} label="Proxmox VE" value="Hypervisor" />
-              <StatCard icon={<SiGitlab />} label="GitLab" value="Self-hosted" />
-              <StatCard icon={<SiGrafana />} label="Grafana" value="Monitoring" />
-              <StatCard icon={<SiDocker />} label="Docker" value="Containers" />
-              <StatCard icon={<SiTerraform />} label="Terraform" value="Infrastructure as Code" />
-            </div>
-            <p className="text-center mt-6 text-blue-100">
-              Wszystkie usługi monitorowane przez Wazuh SIEM, Prometheus i zarządzane przez Ansible + Semaphore UI
+            <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
+              Homelab Infrastructure
+            </h2>
+            <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
+              Profesjonalna infrastruktura oparta o Proxmox i VPS, z pełną automatyzacją i monitoringiem
             </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+              <TechCard 
+                icon={<SiProxmox />} 
+                label="Proxmox VE" 
+                description="Hypervisor wirtualizacji"
+                color="from-orange-500 to-red-500"
+              />
+              <TechCard 
+                icon={<SiGitlab />} 
+                label="GitLab" 
+                description="CI/CD & Git Repos"
+                color="from-orange-600 to-red-600"
+              />
+              <TechCard 
+                icon={<SiGrafana />} 
+                label="Grafana" 
+                description="Dashboards & Visualizations"
+                color="from-orange-500 to-yellow-500"
+              />
+              <TechCard 
+                icon={<SiDocker />} 
+                label="Docker" 
+                description="Container Platform"
+                color="from-blue-500 to-cyan-500"
+              />
+              <TechCard 
+                icon={<SiTerraform />} 
+                label="Terraform" 
+                description="Infrastructure as Code"
+                color="from-purple-500 to-indigo-600"
+              />
+            </div>
+
+            {/* Additional Tools */}
+            <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+                Dodatkowe Narzędzia
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <ToolBadge name="Wazuh SIEM" emoji="🛡️" />
+                <ToolBadge name="Prometheus" emoji="📊" />
+                <ToolBadge name="Ansible" emoji="⚙️" />
+                <ToolBadge name="Semaphore UI" emoji="🎯" />
+                <ToolBadge name="Zabbix" emoji="📈" />
+                <ToolBadge name="Trivy" emoji="🔍" />
+                <ToolBadge name="DefectDojo" emoji="🔐" />
+                <ToolBadge name="Harbor" emoji="🚢" />
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -205,14 +250,39 @@ export default function ProjectsPage() {
   );
 }
 
-function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function TechCard({ 
+  icon, 
+  label, 
+  description,
+  color 
+}: { 
+  icon: React.ReactNode; 
+  label: string; 
+  description: string;
+  color: string;
+}) {
   return (
-    <div className="text-center">
-      <div className="text-4xl mb-2 flex justify-center">
+    <motion.div
+      whileHover={{ y: -8, scale: 1.03 }}
+      className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all p-6 text-center"
+    >
+      <div className={`text-5xl mb-4 flex justify-center bg-gradient-to-br ${color} text-white w-20 h-20 rounded-2xl items-center mx-auto`}>
         {icon}
       </div>
-      <div className="font-bold text-lg">{label}</div>
-      <div className="text-sm text-blue-200">{value}</div>
-    </div>
+      <div className="font-bold text-lg text-gray-900 dark:text-white mb-2">{label}</div>
+      <div className="text-sm text-gray-600 dark:text-gray-400">{description}</div>
+    </motion.div>
+  );
+}
+
+function ToolBadge({ name, emoji }: { name: string; emoji: string }) {
+  return (
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="bg-gray-100 dark:bg-gray-700 rounded-xl p-4 text-center transition-all hover:shadow-md"
+    >
+      <div className="text-3xl mb-2">{emoji}</div>
+      <div className="text-sm font-semibold text-gray-900 dark:text-white">{name}</div>
+    </motion.div>
   );
 }
