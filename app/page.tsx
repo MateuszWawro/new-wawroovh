@@ -1,12 +1,14 @@
-import Footer from '@/components/Footer';
-import Hero from '@/components/Hero';
+import HomeHero from '@/components/Hero';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import HomeHighlights from '@/components/HomeHighlights';
 
 export default function Home() {
   return (
     <main>
       <Navbar />
-      <Hero />
+      <HomeHero />
+      <HomeHighlights />
       <Footer />
     </main>
   );

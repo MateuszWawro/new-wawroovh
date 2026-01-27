@@ -20,8 +20,8 @@ export default function Footer() {
 
           {/* Social Icons */}
           <div className="flex space-x-6">
-            <SocialIcon href="https://github.com/yourusername" icon={<FiGithub />} />
-            <SocialIcon href="https://linkedin.com/in/yourusername" icon={<FiLinkedin />} />
+            <SocialIcon href="https://github.com/MateuszWawro" icon={<FiGithub />} />
+            <SocialIcon href="https://linkedin.com/in/mateuszwawro" icon={<FiLinkedin />} />
             <SocialIcon href="mailto:mateusz@wawro.ovh" icon={<FiMail />} />
           </div>
         </div>

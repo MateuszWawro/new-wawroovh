@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Blog o DevOps, automatyzacji, CI/CD, Dockerze, Kubernetes i infrastrukturze IT. Praktyczne wskazówki i case studies.",
+};
 import { getAllPosts } from '@/lib/posts';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
