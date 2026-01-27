@@ -39,7 +39,7 @@ export default function Hero() {
             transition={{ delay: 0.3 }}
             className="text-2xl md:text-3xl text-gray-600 mb-4"
           >
-            DevOps Engineer | IT Infrastructure Specialist
+            DevOps Engineer | ISTQB Certified Tester
           </motion.div>
 
           <motion.p
@@ -59,9 +59,9 @@ export default function Hero() {
             transition={{ delay: 0.5 }}
             className="flex justify-center space-x-6 mb-12"
           >
-            <SocialLink href="https://github.com/yourusername" icon={<FiGithub />} />
-            <SocialLink href="https://linkedin.com/in/yourusername" icon={<FiLinkedin />} />
-            <SocialLink href="mailto:your@email.com" icon={<FiMail />} />
+            <SocialLink href="https://github.com/MateuszWawro" icon={<FiGithub />} />
+            <SocialLink href="https://www.linkedin.com/in/mateuszwawro/" icon={<FiLinkedin />} />
+            <SocialLink href="mailto:mateusz@wawro.ovh" icon={<FiMail />} />
           </motion.div>
 
           {/* CTA Buttons */}
