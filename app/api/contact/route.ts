@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 
     // Konfiguracja SMTP OVH
     const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',       // OVH SMTP server
+      host: 'smtp.mail.me.com',       // OVH SMTP server
       port: 465,                  // lub 465 dla SSL
       secure: true,              // true jeśli port 465
       auth: {
