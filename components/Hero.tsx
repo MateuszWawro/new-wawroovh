@@ -53,19 +53,25 @@ export default function HomeHero() {
       />
 
       {/* Floating particles */}
-      {[...Array(18)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
-          animate={{ y: [0, -200], opacity: [0, 1, 0] }}
-          transition={{
-            duration: 8 + Math.random() * 8,
-            repeat: Infinity,
-            delay: Math.random() * 5,
-          }}
-          style={{ left: `${Math.random() * 100}%`, bottom: -20 }}
-        />
-      ))}
+{[...Array(18)].map((_, i) => (
+  <motion.div
+    key={i}
+    className="absolute w-2 h-2 bg-blue-400/30 rounded-full"
+    initial={{
+      left: `${(i * 5.5) % 100}%`,
+      bottom: -20,
+    }}
+    animate={{ 
+      y: [0, -200], 
+      opacity: [0, 1, 0] 
+    }}
+    transition={{
+      duration: 3 + (i % 3),
+      repeat: Infinity,
+      delay: i * 0.2,
+    }}
+  />
+))}
 
       <div className="relative z-10 text-center px-4">
 

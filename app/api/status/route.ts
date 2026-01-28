@@ -17,6 +17,11 @@ const services = [
     url: 'https://dam-rob.wawro.ovh',
     category: 'Testowe',
   },
+  {
+    name: 'Family-Calendar',
+    url: 'https://family.wawro.ovh',
+    category: 'Produkcja',
+  },
 ];
 
 async function checkServiceStatus(url: string): Promise<boolean> {

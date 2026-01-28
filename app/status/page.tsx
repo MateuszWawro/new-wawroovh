@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { FiServer, FiShield, FiMonitor, FiTool, FiRefreshCw } from 'react-icons/fi';
+import { FiServer, FiShield, FiMonitor, FiTool, FiRefreshCw, FiCpu } from 'react-icons/fi';
 
 interface Service {
   name: string;
@@ -26,6 +26,7 @@ const categoryIcons: Record<string, React.ReactNode> = {
   Security: <FiShield />,
   Collaboration: <FiTool />,
   Testowe: <FiTool />,
+  Produkcja: <FiCpu />,
 };
 
 const categoryColors: Record<string, string> = {
@@ -35,6 +36,7 @@ const categoryColors: Record<string, string> = {
   Security: 'from-red-500 to-pink-500',
   Collaboration: 'from-orange-500 to-yellow-500',
   Testowe: 'from-gray-500 to-slate-500',
+  Produkcja: 'from-pink-500 to-red-500',
 };
 
 export default function StatusPage() {

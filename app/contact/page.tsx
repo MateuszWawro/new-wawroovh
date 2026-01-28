@@ -14,11 +14,30 @@ export default function ContactPage() {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Wiadomość wysłana! (to tylko demo)');
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      alert(data.message);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } else {
+      alert(data.error || 'Błąd wysyłki');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Błąd wysyłki, spróbuj ponownie.');
+  }
+};
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
