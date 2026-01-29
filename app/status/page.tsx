@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { FiServer, FiShield, FiMonitor, FiTool, FiRefreshCw, FiCpu } from 'react-icons/fi';
+import { FiServer, FiShield, FiMonitor, FiTool, FiRefreshCw, FiPower } from 'react-icons/fi';
 
 interface Service {
   name: string;
@@ -26,7 +26,7 @@ const categoryIcons: Record<string, React.ReactNode> = {
   Security: <FiShield />,
   Collaboration: <FiTool />,
   Testowe: <FiTool />,
-  Produkcja: <FiCpu />,
+  Produkcja: <FiPower />,
 };
 
 const categoryColors: Record<string, string> = {
@@ -36,7 +36,7 @@ const categoryColors: Record<string, string> = {
   Security: 'from-red-500 to-pink-500',
   Collaboration: 'from-orange-500 to-yellow-500',
   Testowe: 'from-gray-500 to-slate-500',
-  Produkcja: 'from-pink-500 to-red-500',
+  Produkcja: 'from-orange-500 to-yellow-500',
 };
 
 export default function StatusPage() {
@@ -46,7 +46,7 @@ export default function StatusPage() {
   const fetchStatus = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/status');
+      const response = await fetch('https://status-api.wawro.ovh');
       const data = await response.json();
       setStatusData(data);
     } catch (error) {
@@ -79,7 +79,6 @@ export default function StatusPage() {
 
       <div className="flex-grow pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -92,7 +91,6 @@ export default function StatusPage() {
               Status usług w moim homelab
             </p>
 
-            {/* Overall Status Card */}
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6">
               <motion.div
                 initial={{ scale: 0.9 }}
@@ -132,14 +130,13 @@ export default function StatusPage() {
             </div>
           </motion.div>
 
-          {/* Services by Category */}
           {loading && !statusData ? (
             <div className="text-center py-20">
               <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent"></div>
               <p className="mt-6 text-lg text-gray-600 dark:text-gray-400">Sprawdzanie statusu...</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {groupedServices &&
                 Object.entries(groupedServices).map(([category, services], index) => (
                   <motion.div
@@ -149,7 +146,6 @@ export default function StatusPage() {
                     transition={{ delay: index * 0.1 }}
                     className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6"
                   >
-                    {/* Category Header */}
                     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-200 dark:border-gray-700">
                       <div className={`text-2xl bg-gradient-to-r ${categoryColors[category]} text-white p-3 rounded-xl`}>
                         {categoryIcons[category]}
@@ -159,7 +155,6 @@ export default function StatusPage() {
                       </h2>
                     </div>
 
-                    {/* Services List */}
                     <div className="space-y-4">
                       {services.map((service, serviceIndex) => (
                         <motion.div
@@ -174,8 +169,6 @@ export default function StatusPage() {
                             <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                               {service.name}
                             </h3>
-                            
-                            {/* Status Badge */}
                             <div className={`flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold ${
                                 service.status === 'online'
                                   ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
@@ -187,13 +180,7 @@ export default function StatusPage() {
                               {service.status === 'online' ? 'Online' : 'Offline'}
                             </div>
                           </div>
-                          
-                          <a 
-                            href={service.url} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="text-sm text-blue-600 dark:text-blue-400 hover:underline block truncate"
-                          >
+                          <a href={service.url} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 dark:text-blue-400 hover:underline block truncate">
                             {service.url.replace('https://', '')}
                           </a>
                         </motion.div>
