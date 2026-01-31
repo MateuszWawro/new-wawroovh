@@ -124,7 +124,7 @@ export default function HomeHero() {
               "CI/CD Builder",
               "Homelab Architect",
               "ISTQB Certified Tester",
-              "Web Creator",
+              "Websites Creator",
             ]}
           />
         </div>

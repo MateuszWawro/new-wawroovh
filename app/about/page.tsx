@@ -28,7 +28,10 @@ import {
   SiGrafana,
   SiPrometheus,
   SiPostgresql,
-  SiGithub
+  SiGithub,
+  SiNextdotjs,
+  SiCloudflare,
+  SiNginx
 } from 'react-icons/si';
 
 const education = [
@@ -109,7 +112,7 @@ const experience = [
     responsibilities: [
       'Fotografia nieruchomości komercyjnych',
       'Fotografia i wideo z drona',
-      'Tworzenie stron WWW (WordPress)',
+      'Tworzenie stron WWW',
       'Produkcja wideo i montaż',
       'Fotografia sferyczna 360°',
     ],
@@ -129,6 +132,7 @@ const techStack = [
       { name: 'Ansible', icon: <SiAnsible /> },
       { name: 'Terraform', icon: <SiTerraform /> },
       { name: 'Semaphore UI', icon: <FiTool /> },
+      { name: 'Cloudflare', icon: <SiCloudflare /> },
     ],
   },
   {
@@ -142,8 +146,6 @@ const techStack = [
       { name: 'Grafana', icon: <SiGrafana /> },
       { name: 'Trivy', icon: <FiShield /> },
       { name: 'DefectDojo', icon: <FiShield /> },
-      { name: 'OpenVAS', icon: <FiShield /> },
-      { name: 'SonarQube', icon: <FiCode /> },
       { name: 'WAF', icon: <FiShield /> },
     ],
   },
@@ -156,7 +158,7 @@ const techStack = [
       { name: 'Proxmox', icon: <FiServer /> },
       { name: 'Harbor', icon: <FiDatabase /> },
       { name: 'Portainer', icon: <FiServer /> },
-      { name: 'Nginx PM', icon: <FiServer /> },
+      { name: 'Nginx PM', icon: <SiNginx /> },
       { name: 'PostgreSQL', icon: <SiPostgresql /> },
     ],
   },
@@ -167,6 +169,7 @@ const techStack = [
     technologies: [
       { name: 'JavaScript', icon: <SiJavascript /> },
       { name: 'Vue.js', icon: <SiVuedotjs /> },
+      { name: 'Next.js', icon: <SiNextdotjs /> },
       { name: 'Cypress', icon: <FiCode /> },
       { name: 'Playwright', icon: <FiCode /> },
       { name: 'WordPress', icon: <SiWordpress /> },
