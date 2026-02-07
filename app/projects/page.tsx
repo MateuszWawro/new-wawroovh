@@ -49,6 +49,14 @@ const projects = [
     category: 'Strony WWW',
   },
   {
+    title: 'Agnieszka Wawro Portfolio',
+    description: 'Strona portfolio dla architekta. Prezentacja projektów architektonicznych, realizacji i koncepcji. Portfolio zawiera galerię wykonanych prac, opis usług oraz formularz kontaktowy dla potencjalnych klientów.',
+    url: 'https://agnieszka.wawro.ovh',
+    image: '🏛️',
+    technologies: ['Vue', 'JavaScript', 'CSS'],
+    category: 'Strony WWW',
+  },
+  {
     title: 'Dam-Rob - Strona Testowa',
     description: 'Strona testowa hostowana w homelab. Wykorzystywana do testowania nowych funkcjonalności, deploymentów i konfiguracji CI/CD przed wdrożeniem produkcyjnym.',
     url: 'https://dam-rob.wawro.ovh',
