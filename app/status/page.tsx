@@ -183,9 +183,11 @@ export default function StatusPage() {
                               {service.status === 'online' ? 'Online' : 'Offline'}
                             </div>
                           </div>
-                          <a href={service.url} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 dark:text-blue-400 hover:underline block truncate">
-                            {service.url.replace('https://', '')}
-                          </a>
+                          {!['GitLab', 'Wazuh', 'Grafana'].includes(service.name) && (
+                            <a href={service.url} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-600 dark:text-blue-400 hover:underline block truncate">
+                              {service.url.replace('https://', '')}
+                            </a>
+                          )}
                         </motion.div>
                       ))}
                     </div>
