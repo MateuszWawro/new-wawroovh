@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
+import Link from 'next/link';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -15,6 +16,10 @@ export default function Footer() {
             <p>© {currentYear} Mateusz Wawro</p>
             <p className="text-xs mt-1">
               Part of <a href="https://wawrophotography.eu" target="_blank" rel="noopener noreferrer" className="text-blue-400 dark:text-blue-300 hover:text-blue-300 dark:hover:text-blue-200 transition-colors">Wawro Photography</a>
+              <span className="mx-2 text-gray-600">·</span>
+              <Link href="/cookies" className="text-gray-500 hover:text-blue-400 dark:hover:text-blue-300 transition-colors">
+                Polityka cookies
+              </Link>
             </p>
           </div>
 
