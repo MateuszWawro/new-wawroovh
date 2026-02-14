@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BlogPost from '@/components/BlogPost';
+import type { Metadata } from 'next';
 
 export function generateStaticParams() {
   const posts = getAllPosts();
@@ -13,6 +14,36 @@ export function generateStaticParams() {
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+
+  if (!post) {
+    return { title: 'Post not found' };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+    authors: [{ name: post.author }],
+    keywords: post.tags,
+    openGraph: {
+      title: `${post.title} | Mateusz Wawro`,
+      description: post.excerpt,
+      type: 'article',
+      publishedTime: post.date,
+      authors: [post.author],
+      tags: post.tags,
+      url: `https://portfolio.wawro.ovh/blog/${slug}`,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+    },
+  };
 }
 
 export default async function PostPage({ params }: PageProps) {
