@@ -4,7 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { FiShield, FiCheck, FiX, FiSettings, FiTrash2 } from 'react-icons/fi';
+import { FiShield, FiCheck, FiX, FiTrash2 } from 'react-icons/fi';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -14,6 +15,9 @@ const fadeInUp = {
 };
 
 export default function CookiesPage() {
+  const { t } = useLanguage();
+  const tc = t.cookiesPage;
+
   const clearCookieConsent = () => {
     localStorage.removeItem('cookieConsent');
     window.location.reload();
@@ -36,10 +40,10 @@ export default function CookiesPage() {
               <FiShield className="w-10 h-10 text-white" />
             </div>
             <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 mb-4">
-              Polityka Cookies
+              {tc.title}
             </h1>
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-              Dowiedz się, jak i dlaczego korzystamy z plików cookie na tej stronie.
+              {tc.subtitle}
             </p>
           </motion.div>
 
@@ -52,12 +56,10 @@ export default function CookiesPage() {
               <div className="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-3">
                   <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white text-sm font-bold">1</span>
-                  Czym są pliki cookie?
+                  {tc.whatAreCookies}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  Pliki cookie to małe pliki tekstowe przechowywane na Twoim urządzeniu przez przeglądarkę internetową.
-                  Służą do zapamiętywania Twoich preferencji i ustawień, co pozwala na wygodniejsze korzystanie ze strony
-                  przy kolejnych wizytach. Ta strona korzysta wyłącznie z plików cookie niezbędnych do jej prawidłowego działania.
+                  {tc.whatAreCookiesDesc}
                 </p>
               </div>
             </motion.section>
@@ -68,60 +70,60 @@ export default function CookiesPage() {
               <div className="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center gap-3">
                   <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white text-sm font-bold">2</span>
-                  Jakie pliki cookie wykorzystujemy?
+                  {tc.whatWeUse}
                 </h2>
 
                 <div className="space-y-4">
-                  {/* Used cookie */}
+                  {/* cookieConsent */}
                   <div className="flex items-start gap-4 p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800/30">
                     <div className="shrink-0 w-10 h-10 rounded-xl bg-green-500 flex items-center justify-center">
                       <FiCheck className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">cookieConsent</h3>
+                      <h3 className="font-semibold text-gray-900 dark:text-white">{tc.cookieConsentName}</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Zapamiętuje Twój wybór dotyczący zgody na pliki cookie. Wartość: <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">accepted</code> lub <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">rejected</code>.
+                        {tc.cookieConsentDesc} <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">accepted</code> / <code className="text-xs bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">rejected</code>.
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">Typ: localStorage · Czas życia: bezterminowo</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">{tc.cookieConsentLifetime}</p>
                     </div>
                   </div>
 
-                  {/* Used cookie */}
+                  {/* theme */}
                   <div className="flex items-start gap-4 p-4 bg-green-50 dark:bg-green-950/20 rounded-xl border border-green-200 dark:border-green-800/30">
                     <div className="shrink-0 w-10 h-10 rounded-xl bg-green-500 flex items-center justify-center">
                       <FiCheck className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">theme</h3>
+                      <h3 className="font-semibold text-gray-900 dark:text-white">{tc.themeName}</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Zapamiętuje Twój preferowany motyw strony (jasny lub ciemny).
+                        {tc.themeDesc}
                       </p>
-                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">Typ: localStorage · Czas życia: bezterminowo</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-500 mt-1">{tc.themeLifetime}</p>
                     </div>
                   </div>
 
-                  {/* Not used */}
+                  {/* Analytics - not used */}
                   <div className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700/50">
                     <div className="shrink-0 w-10 h-10 rounded-xl bg-gray-400 dark:bg-gray-600 flex items-center justify-center">
                       <FiX className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Cookie analityczne</h3>
+                      <h3 className="font-semibold text-gray-900 dark:text-white">{tc.analyticsCookies}</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Nie korzystamy z Google Analytics, Hotjar ani żadnych innych narzędzi analitycznych. Twoja aktywność nie jest śledzona.
+                        {tc.analyticsCookiesDesc}
                       </p>
                     </div>
                   </div>
 
-                  {/* Not used */}
+                  {/* Advertising - not used */}
                   <div className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-800/30 rounded-xl border border-gray-200 dark:border-gray-700/50">
                     <div className="shrink-0 w-10 h-10 rounded-xl bg-gray-400 dark:bg-gray-600 flex items-center justify-center">
                       <FiX className="w-5 h-5 text-white" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Cookie reklamowe / trzecich stron</h3>
+                      <h3 className="font-semibold text-gray-900 dark:text-white">{tc.adCookies}</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                        Nie wyświetlamy reklam i nie udostępniamy Twoich danych żadnym stronom trzecim.
+                        {tc.adCookiesDesc}
                       </p>
                     </div>
                   </div>
@@ -135,18 +137,17 @@ export default function CookiesPage() {
               <div className="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-3">
                   <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white text-sm font-bold">3</span>
-                  Jak zarządzać plikami cookie?
+                  {tc.howToManage}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-4">
-                  Możesz w każdej chwili usunąć pliki cookie z poziomu ustawień swojej przeglądarki, lub skorzystać
-                  z poniższego przycisku, aby zresetować zgodę na tej stronie. Po resecie baner cookie pojawi się ponownie.
+                  {tc.howToManageDesc}
                 </p>
                 <button
                   onClick={clearCookieConsent}
                   className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-xl font-medium shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all text-sm"
                 >
                   <FiTrash2 className="w-4 h-4" />
-                  Resetuj zgodę na cookies
+                  {tc.resetConsent}
                 </button>
               </div>
             </motion.section>
@@ -157,11 +158,10 @@ export default function CookiesPage() {
               <div className="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50">
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-3">
                   <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center text-white text-sm font-bold">4</span>
-                  Kontakt
+                  {tc.contactSection}
                 </h2>
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  Jeśli masz pytania dotyczące polityki cookie lub prywatności na tej stronie, skontaktuj się ze mną
-                  pod adresem{' '}
+                  {tc.contactDesc}{' '}
                   <a
                     href="mailto:mateusz@wawro.ovh"
                     className="text-blue-600 dark:text-blue-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors underline underline-offset-2"
@@ -174,7 +174,7 @@ export default function CookiesPage() {
 
             {/* Last updated */}
             <motion.p {...fadeInUp} className="text-center text-xs text-gray-400 dark:text-gray-600 mt-8">
-              Ostatnia aktualizacja: 14 lutego 2026 r.
+              {tc.lastUpdated}
             </motion.p>
           </div>
         </div>

@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 import { 
   FiCode, 
   FiServer, 
@@ -33,91 +34,6 @@ import {
   SiCloudflare,
   SiNginx
 } from 'react-icons/si';
-
-const education = [
-  {
-    degree: 'Magister',
-    field: 'Zarządzanie procesami i usługami IT',
-    school: 'WSB Merito Gdańsk',
-    years: '2024 - 2026',
-    status: 'W trakcie',
-    thesis: 'Czynniki determinujące skuteczność zarządzania zespołem testerskim w różnych modelach pracy na przykładzie przedsiębiorstwa OPEGIEKA',
-  },
-  {
-    degree: 'Inżynier',
-    field: 'Grafika i Multimedia',
-    school: 'Akademia Nauk Stosowanych w Elblągu',
-    years: '2016 - 2022',
-    status: 'Ukończone',
-    thesis: 'Skanowanie Fotogrametryczne obiektów architektonicznych na podstawie Wojewódzkiego Szpitala Zespolonego w Elblągu',
-  },
-];
-
-const experience = [
-  {
-    title: 'Junior DevOps/SysOps',
-    company: 'OPEGIEKA Sp. z o.o.',
-    location: 'Elbląg',
-    type: 'Hybrydowa',
-    period: 'Październik 2024 - obecnie',
-    current: true,
-    responsibilities: [
-      'Zarządzanie procesami CI/CD (GitLab, GitHub Actions)',
-      'Konteneryzacja aplikacji (Docker, Kubernetes)',
-      'Automatyzacja infrastruktury (Ansible, Terraform)',
-      'Monitoring i bezpieczeństwo (Zabbix, Wazuh, Trivy)',
-      'Testy wydajności i bezpieczeństwa',
-      'Administracja serwerami Linux/Ubuntu',
-    ],
-  },
-  {
-    title: 'Junior QA Engineer',
-    company: 'OPEGIEKA Sp. z o.o.',
-    location: 'Elbląg',
-    type: 'Hybrydowa',
-    period: 'Marzec 2023 - Wrzesień 2024',
-    current: false,
-    responsibilities: [
-      'Automatyzacja testów (Cypress, Playwright, JavaScript)',
-      'Testy wydajnościowe (JMeter)',
-      'Testowanie modułów GIS',
-      'Praca w Scrum',
-      'Konfiguracja CI/CD dla testów',
-      'Wsparcie powdrożeniowe',
-    ],
-  },
-  {
-    title: 'Informatyk',
-    company: 'Wojewódzki Szpital Zespolony',
-    location: 'Elbląg',
-    type: 'Stacjonarna',
-    period: 'Listopad 2019 - Marzec 2023',
-    current: false,
-    responsibilities: [
-      'Administracja systemami HIS/LIS/ERP/PACS',
-      'Zarządzanie infrastrukturą sieciową',
-      'Integracja systemów medycznych',
-      'Administracja serwerem UNIX',
-      'Szkolenie personelu medycznego',
-      'Dokumentacja techniczna',
-    ],
-  },
-  {
-    title: 'Partner / Fotograf',
-    company: 'Wawro Photography',
-    location: 'Elbląg',
-    type: 'Freelance',
-    period: 'Styczeń 2014 - obecnie',
-    current: true,
-    responsibilities: [
-      'Fotografia nieruchomości komercyjnych',
-      'Fotografia i wideo z drona',
-      'Tworzenie stron WWW',
-      'Produkcja wideo i montaż',
-      'Fotografia sferyczna 360°',
-    ],
-  },
-];
 
 const techStack = [
   {
@@ -178,6 +94,10 @@ const techStack = [
 ];
 
 export default function AboutPage() {
+  const { t } = useLanguage();
+  const education = t.about.educationData;
+  const experience = t.about.experienceData;
+
   return (
     <main className="flex flex-col min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 transition-colors">
       <Navbar />
@@ -191,10 +111,10 @@ export default function AboutPage() {
             className="text-center mb-16"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              O mnie
+              {t.about.title}
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Poznaj moją drogę w świecie DevOps, edukację i technologie, które stosuję na co dzień
+              {t.about.subtitle}
             </p>
           </motion.div>
 
@@ -205,10 +125,10 @@ export default function AboutPage() {
             transition={{ delay: 0.2 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
           >
-            <StatCard number="5+" label="Lat doświadczenia" />
-            <StatCard number="30+" label="Technologii" />
-            <StatCard number="4" label="Stanowiska" />
-            <StatCard number="2" label="Firmy IT" />
+            <StatCard number="5+" label={t.about.yearsExp} />
+            <StatCard number="30+" label={t.about.technologies} />
+            <StatCard number="4" label={t.about.positions} />
+            <StatCard number="2" label={t.about.itCompanies} />
           </motion.div>
 
           {/* Education */}
@@ -221,7 +141,7 @@ export default function AboutPage() {
             <div className="flex items-center mb-8">
               <FiAward className="text-3xl text-blue-600 dark:text-blue-400 mr-3" />
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Wykształcenie
+                {t.about.education}
               </h2>
             </div>
             <div className="grid md:grid-cols-2 gap-6">
@@ -237,7 +157,7 @@ export default function AboutPage() {
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3 ${
-                        edu.status === 'W trakcie' 
+                        (edu.status as string) === 'W trakcie' || (edu.status as string) === 'In progress'
                           ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200' 
                           : 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200'
                       }`}>
@@ -259,7 +179,7 @@ export default function AboutPage() {
                   </p>
                   <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                     <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2">
-                      Temat pracy:
+                      {t.about.thesisTopic}
                     </p>
                     <p className="text-sm text-gray-600 dark:text-gray-300 italic">
                       {edu.thesis}
@@ -280,7 +200,7 @@ export default function AboutPage() {
             <div className="flex items-center mb-8">
               <FiBriefcase className="text-3xl text-blue-600 dark:text-blue-400 mr-3" />
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Doświadczenie zawodowe
+                {t.about.experience}
               </h2>
             </div>
             <div className="space-y-6">
@@ -305,7 +225,7 @@ export default function AboutPage() {
                         </h3>
                         {exp.current && (
                           <span className="px-2 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-xs font-semibold">
-                            Obecnie
+                            {t.about.currently}
                           </span>
                         )}
                       </div>
@@ -342,7 +262,7 @@ export default function AboutPage() {
             <div className="flex items-center mb-8">
               <FiCode className="text-3xl text-blue-600 dark:text-blue-400 mr-3" />
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-                Stack Technologiczny
+                {t.about.techStack}
               </h2>
             </div>
             <div className="grid md:grid-cols-2 gap-8">

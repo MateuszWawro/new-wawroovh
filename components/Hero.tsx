@@ -4,9 +4,11 @@ import React, { useRef } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 
 export default function HomeHero() {
   const cardRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
@@ -118,27 +120,20 @@ export default function HomeHero() {
         {/* 🔥 TYPEWRITER WRACA */}
         <div className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 mb-6 font-semibold h-12">
           <TypeWriter
-            texts={[
-              "DevOps Engineer",
-              "Automation Enthusiast",
-              "CI/CD Builder",
-              "Homelab Architect",
-              "ISTQB Certified Tester",
-              "Websites Creator",
-            ]}
+            texts={[...t.hero.typewriterTexts]}
           />
         </div>
 
         <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-          Buduję infrastrukturę, która działa szybciej niż deadline’y się zbliżają ⚙️
+          {t.hero.subtitle}
         </p>
 
         <div className="flex gap-4 justify-center">
           <Link href="/contact" className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold shadow-xl hover:scale-105 transition">
-            Skontaktuj się
+            {t.hero.contactBtn}
           </Link>
           <Link href="/about" className="px-8 py-4 bg-white dark:bg-gray-800 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-full font-semibold hover:scale-105 transition shadow-lg">
-            O mnie
+            {t.hero.aboutBtn}
           </Link>
         </div>
       </div>

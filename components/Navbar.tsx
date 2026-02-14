@@ -7,19 +7,22 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { FiMenu, FiX } from 'react-icons/fi';
 import ThemeToggle from './ThemeToggle';
-
-const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'O mnie', href: '/about' },
-  { name: 'Blog', href: '/blog' },
-  { name: 'Projekty', href: '/projects' },
-  { name: 'Status', href: '/status' },
-  { name: 'Kontakt', href: '/contact' },
-];
+import LanguageToggle from './LanguageToggle';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const navItems = [
+    { name: t.nav.home, href: '/' },
+    { name: t.nav.about, href: '/about' },
+    { name: t.nav.blog, href: '/blog' },
+    { name: t.nav.projects, href: '/projects' },
+    { name: t.nav.status, href: '/status' },
+    { name: t.nav.contact, href: '/contact' },
+  ];
 
   return (
     <motion.nav
@@ -82,11 +85,13 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <LanguageToggle />
             <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
+            <LanguageToggle />
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}

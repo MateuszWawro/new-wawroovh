@@ -6,90 +6,48 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { FiExternalLink } from 'react-icons/fi';
 import { SiDocker, SiProxmox, SiGitlab, SiGrafana, SiTerraform } from 'react-icons/si';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 
-const projects = [
-  {
-    title: 'OzonSir.pl',
-    description: 'Strona internetowa dla organizacji zajmującej się sportem osób niepełnosprawnych. Responsywny design, kalendarz wydarzeń, galeria zajęć sportowych i formularz kontaktowy dla zainteresowanych uczestników.',
-    url: 'https://ozonsir.pl',
-    image: '♿',
-    technologies: ['WordPress', 'PHP', 'CSS'],
-    category: 'Strony WWW',
-  },
-  {
-    title: 'Ruczaj Elbląg',
-    description: 'Strona centrum odnowy biologicznej Ruczaj w Elblągu. Prezentacja oferty odnowy, masaży, saun i zabiegów relaksacyjnych. System rezerwacji online i galeria zdjęć ośrodka.',
-    url: 'https://ruczaj.elblag.pl',
-    image: '🧘',
-    technologies: ['WordPress', 'PHP', 'CSS'],
-    category: 'Strony WWW',
-  },
-  {
-    title: 'Piastowo55.pl',
-    description: 'Strona zespołu domków letniskowych Piastowo 55 do wynajęcia. Prezentacja obiektów, infrastruktury sportowej (boiska, place zabaw), cennik i system rezerwacji. Idealne miejsce na aktywny wypoczynek.',
-    url: 'https://piastowo55.pl',
-    image: '🏡',
-    technologies: ['WordPress', 'PHP', 'CSS'],
-    category: 'Strony WWW',
-  },
-  {
-    title: 'Reumatologia Elbląg',
-    description: 'Strona gabinetu reumatologicznego w Elblągu. Informacje o usługach, cennik, możliwość umówienia wizyty online.',
-    url: 'https://reumatologia.elblag.pl',
-    image: '🏥',
-    technologies: ['WordPress', 'PHP', 'CSS'],
-    category: 'Strony WWW',
-  },
-  {
-    title: 'Wawro Photography',
-    description: 'Portfolio fotograficzne - fotografia nieruchomości, wideo z drona, zdjęcia 360°. Galeria projektów, cennik usług i formularz kontaktowy.',
-    url: 'https://wawrophotography.eu',
-    image: '📸',
-    technologies: ['Vue', 'JavaScript', 'CSS'],
-    category: 'Strony WWW',
-  },
-  {
-    title: 'Agnieszka Wawro Portfolio',
-    description: 'Strona portfolio dla architekta. Prezentacja projektów architektonicznych, realizacji i koncepcji. Portfolio zawiera galerię wykonanych prac, opis usług oraz formularz kontaktowy dla potencjalnych klientów.',
-    url: 'https://agnieszka.wawro.ovh',
-    image: '🏛️',
-    technologies: ['Vue', 'JavaScript', 'CSS'],
-    category: 'Strony WWW',
-  },
-  {
-    title: 'Dam-Rob - Strona Testowa',
-    description: 'Strona testowa hostowana w homelab. Wykorzystywana do testowania nowych funkcjonalności, deploymentów i konfiguracji CI/CD przed wdrożeniem produkcyjnym.',
-    url: 'https://dam-rob.wawro.ovh',
-    image: '🧪',
-    technologies: ['Vue', 'JavaScript', 'CSS'],
-    category: 'Homelab',
-  },
-  {
-    title: 'Homelab Infrastructure',
-    description: 'Kompleksowa infrastruktura homelab oparta o Proxmox VE oraz VPS. Self-hosted GitLab do zarządzania kodem, Semaphore UI do automatyzacji z Ansible, Wazuh SIEM do monitoringu bezpieczeństwa, stack Prometheus + Grafana do observability. Infrastructure as Code z Terraform. Wszystko konteneryzowane w Docker i zarządzane przez GitLab CI/CD pipelines.',
-    url: 'https://gitlab.wawro.ovh',
-    image: '🖥️',
-    technologies: ['Proxmox', 'Docker', 'GitLab', 'Ansible', 'Terraform', 'Wazuh', 'Prometheus', 'Grafana', 'Semaphore UI'],
-    category: 'Homelab',
-  },
-  {
-    title: 'Family App',
-    description: 'Rozwijana aplikacja rodzinna hostowana w homelab. Prywatna platforma do zarządzania wydarzeniami rodzinnymi, udostępniania zdjęć i organizacji spotkań. Projekt w aktywnym rozwoju z planami rozbudowy o kolejne funkcjonalności.',
-    url: 'https://family.wawro.ovh',
-    image: '👨‍👩‍👧‍👦',
-    technologies: ['Vite', 'SQLite', 'Docker', 'TypeScript'],
-    category: 'Aplikacje',
-    status: 'W rozwoju',
-  },
+const projectsMeta = [
+  { url: 'https://ozonsir.pl', image: '♿', technologies: ['WordPress', 'PHP', 'CSS'] },
+  { url: 'https://ruczaj.elblag.pl', image: '🧘', technologies: ['WordPress', 'PHP', 'CSS'] },
+  { url: 'https://piastowo55.pl', image: '🏡', technologies: ['WordPress', 'PHP', 'CSS'] },
+  { url: 'https://reumatologia.elblag.pl', image: '🏥', technologies: ['WordPress', 'PHP', 'CSS'] },
+  { url: 'https://wawrophotography.eu', image: '📸', technologies: ['Vue', 'JavaScript', 'CSS'] },
+  { url: 'https://agnieszka.wawro.ovh', image: '🏛️', technologies: ['Vue', 'JavaScript', 'CSS'] },
+  { url: 'https://dam-rob.wawro.ovh', image: '🧪', technologies: ['Vue', 'JavaScript', 'CSS'] },
+  { url: 'https://gitlab.wawro.ovh', image: '🖥️', technologies: ['Proxmox', 'Docker', 'GitLab', 'Ansible', 'Terraform', 'Wazuh', 'Prometheus', 'Grafana', 'Semaphore UI'] },
+  { url: 'https://family.wawro.ovh', image: '👨‍👩‍👧‍👦', technologies: ['Vite', 'SQLite', 'Docker', 'TypeScript'] },
 ];
 
-const categories = ['Wszystkie', 'Strony WWW', 'Homelab', 'Aplikacje'];
-
 export default function ProjectsPage() {
-  const [selectedCategory, setSelectedCategory] = React.useState('Wszystkie');
+  const { t } = useLanguage();
+  const tp = t.projectsPage;
 
-  const filteredProjects = selectedCategory === 'Wszystkie' 
-    ? projects 
+  const categories = [tp.all, tp.websites, tp.homelab, tp.apps];
+  const categoryMap: Record<string, string> = {
+    'Strony WWW': tp.websites,
+    'Homelab': tp.homelab,
+    'Aplikacje': tp.apps,
+    'Websites': tp.websites,
+    'Applications': tp.apps,
+  };
+
+  const projects = tp.projectsData.map((p, i) => ({
+    ...p,
+    ...projectsMeta[i],
+    category: categoryMap[p.category] || p.category,
+  }));
+
+  const [selectedCategory, setSelectedCategory] = React.useState<string>(tp.all);
+
+  // Reset filter when language changes
+  React.useEffect(() => {
+    setSelectedCategory(tp.all);
+  }, [tp.all]);
+
+  const filteredProjects = selectedCategory === tp.all
+    ? projects
     : projects.filter(p => p.category === selectedCategory);
 
   return (
@@ -105,10 +63,10 @@ export default function ProjectsPage() {
             className="text-center mb-12"
           >
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Moje Projekty
+              {tp.title}
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-              Strony internetowe, infrastruktura homelab i aplikacje webowe, które stworzyłem
+              {tp.subtitle}
             </p>
 
             {/* Category Filter */}
@@ -153,7 +111,7 @@ export default function ProjectsPage() {
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
                       {project.title}
                     </h3>
-                    {project.status && (
+                    {'status' in project && project.status && (
                       <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs font-semibold">
                         {project.status}
                       </span>
@@ -179,7 +137,7 @@ export default function ProjectsPage() {
                   {/* Visit Button */}
                   <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold hover:shadow-lg transition-all w-full justify-center">
                     <FiExternalLink />
-                    Odwiedź stronę
+                    {tp.visitSite}
                   </a>
                 </div>
               </motion.div>
@@ -194,17 +152,17 @@ export default function ProjectsPage() {
             className="mt-20"
           >
             <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-4">
-              Homelab Infrastructure
+              {tp.homelabInfra}
             </h2>
             <p className="text-center text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
-              Profesjonalna infrastruktura oparta o Proxmox i VPS, z pełną automatyzacją i monitoringiem
+              {tp.homelabDesc}
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
               <TechCard 
                 icon={<SiProxmox />} 
                 label="Proxmox VE" 
-                description="Hypervisor wirtualizacji"
+                description="Virtualization Hypervisor"
                 color="from-orange-500 to-red-500"
               />
               <TechCard 
@@ -236,7 +194,7 @@ export default function ProjectsPage() {
             {/* Additional Tools */}
             <div className="mt-12 bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-                Dodatkowe Narzędzia
+                {tp.additionalTools}
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <ToolBadge name="Wazuh SIEM" emoji="🛡️" />

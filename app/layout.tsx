@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import CookieBanner from "@/components/CookieBanner";
 
 export const metadata: Metadata = {
@@ -106,8 +107,10 @@ export default function RootLayout({
 </head>
       <body>
         <ThemeProvider>
-          {children}
-          <CookieBanner />
+          <LanguageProvider>
+            {children}
+            <CookieBanner />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

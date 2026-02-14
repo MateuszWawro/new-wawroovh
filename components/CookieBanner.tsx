@@ -4,10 +4,12 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiShield, FiCheck, FiX, FiInfo } from 'react-icons/fi';
 import Link from 'next/link';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 
 export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const consent = localStorage.getItem('cookieConsent');
@@ -60,11 +62,10 @@ export default function CookieBanner() {
                   {/* Content */}
                   <div className="flex-1">
                     <h3 className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 mb-1.5">
-                      🍪 Prywatność i pliki cookie
+                      {t.cookieBanner.title}
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                      Ta strona korzysta z plików cookie wyłącznie do zapamiętania Twoich preferencji (np. motyw).
-                      Nie zbieramy danych analitycznych ani nie udostępniamy ich stronom trzecim.
+                      {t.cookieBanner.description}
                     </p>
 
                     {/* Expandable details */}
@@ -80,25 +81,25 @@ export default function CookieBanner() {
                           <div className="mt-3 p-4 bg-gray-50 dark:bg-gray-800/50 rounded-xl border border-gray-200 dark:border-gray-700 space-y-2">
                             <div className="flex items-center gap-2 text-sm">
                               <span className="w-2 h-2 rounded-full bg-green-500" />
-                              <span className="text-gray-700 dark:text-gray-300 font-medium">Niezbędne</span>
-                              <span className="text-xs text-gray-500 dark:text-gray-500">— preferencje motywu, zgoda cookie</span>
+                              <span className="text-gray-700 dark:text-gray-300 font-medium">{t.cookieBanner.essential}</span>
+                              <span className="text-xs text-gray-500 dark:text-gray-500">{t.cookieBanner.essentialDesc}</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                               <span className="w-2 h-2 rounded-full bg-red-400" />
-                              <span className="text-gray-700 dark:text-gray-300 font-medium">Analityczne</span>
-                              <span className="text-xs text-gray-500 dark:text-gray-500">— nie używamy</span>
+                              <span className="text-gray-700 dark:text-gray-300 font-medium">{t.cookieBanner.analytics}</span>
+                              <span className="text-xs text-gray-500 dark:text-gray-500">{t.cookieBanner.analyticsDesc}</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                               <span className="w-2 h-2 rounded-full bg-red-400" />
-                              <span className="text-gray-700 dark:text-gray-300 font-medium">Reklamowe</span>
-                              <span className="text-xs text-gray-500 dark:text-gray-500">— nie używamy</span>
+                              <span className="text-gray-700 dark:text-gray-300 font-medium">{t.cookieBanner.advertising}</span>
+                              <span className="text-xs text-gray-500 dark:text-gray-500">{t.cookieBanner.advertisingDesc}</span>
                             </div>
                             <div className="mt-2">
                               <Link
                                 href="/cookies"
                                 className="text-xs text-blue-600 dark:text-blue-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors underline underline-offset-2"
                               >
-                                Przeczytaj pełną politykę cookies →
+                                {t.cookieBanner.readPolicy}
                               </Link>
                             </div>
                           </div>
@@ -111,7 +112,7 @@ export default function CookieBanner() {
                       className="mt-2 flex items-center gap-1 text-xs text-gray-500 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
                     >
                       <FiInfo className="w-3.5 h-3.5" />
-                      {showDetails ? 'Ukryj szczegóły' : 'Pokaż szczegóły'}
+                      {showDetails ? t.cookieBanner.hideDetails : t.cookieBanner.showDetails}
                     </button>
                   </div>
 
@@ -124,7 +125,7 @@ export default function CookieBanner() {
                       className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-xl font-medium hover:bg-gray-200 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 transition-all text-sm"
                     >
                       <FiX className="w-4 h-4" />
-                      Odrzuć
+                      {t.cookieBanner.reject}
                     </motion.button>
                     <motion.button
                       whileHover={{ scale: 1.03 }}
@@ -133,7 +134,7 @@ export default function CookieBanner() {
                       className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white rounded-xl font-medium shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all text-sm"
                     >
                       <FiCheck className="w-4 h-4" />
-                      Akceptuję
+                      {t.cookieBanner.accept}
                     </motion.button>
                   </div>
                 </div>

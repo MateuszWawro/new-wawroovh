@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiArrowRight, FiCode, FiServer, FiShield, FiTrendingUp } from 'react-icons/fi';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 
 export default function HomeHighlights() {
+  const { t } = useLanguage();
+
   return (
     <div className="bg-white dark:bg-gray-900 transition-colors">
       {/* Stats Section */}
@@ -17,18 +20,18 @@ export default function HomeHighlights() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Portfolio w liczbach
+              {t.highlights.statsTitle}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Doświadczenie i realizacje
+              {t.highlights.statsSubtitle}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <StatCard number="5+" label="Lat doświadczenia" delay={0.1} />
-            <StatCard number="30+" label="Technologii" delay={0.2} />
-            <StatCard number="8" label="Projektów" delay={0.3} />
-            <StatCard number="3" label="Usługi 24/7" delay={0.4} />
+            <StatCard number="5+" label={t.highlights.yearsExp} delay={0.1} />
+            <StatCard number="30+" label={t.highlights.technologies} delay={0.2} />
+            <StatCard number="8" label={t.highlights.projects} delay={0.3} />
+            <StatCard number="3" label={t.highlights.services247} delay={0.4} />
           </div>
         </div>
       </section>
@@ -43,18 +46,18 @@ export default function HomeHighlights() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-              Co robię?
+              {t.highlights.whatIDo}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300">
-              Specjalizacje i obszary działania
+              {t.highlights.specializations}
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <ServiceCard icon={<FiCode />} title="CI/CD Automation" description="GitLab CI/CD, GitHub Actions, automatyzacja deploymentów i testów" color="from-blue-500 to-cyan-500" delay={0.1} />
-            <ServiceCard icon={<FiServer />} title="Infrastructure as Code" description="Terraform, Ansible, Proxmox" color="from-purple-500 to-indigo-500" delay={0.2} />
-            <ServiceCard icon={<FiShield />} title="Security & Monitoring" description="Wazuh, Trivy, DefectDojo" color="from-red-500 to-pink-500" delay={0.3} />
-            <ServiceCard icon={<FiTrendingUp />} title="Observability" description="Prometheus, Grafana, Zabbix" color="from-green-500 to-emerald-500" delay={0.4} />
+            <ServiceCard icon={<FiCode />} title="CI/CD Automation" description={t.highlights.cicdDesc} color="from-blue-500 to-cyan-500" delay={0.1} />
+            <ServiceCard icon={<FiServer />} title="Infrastructure as Code" description={t.highlights.iacDesc} color="from-purple-500 to-indigo-500" delay={0.2} />
+            <ServiceCard icon={<FiShield />} title="Security & Monitoring" description={t.highlights.securityDesc} color="from-red-500 to-pink-500" delay={0.3} />
+            <ServiceCard icon={<FiTrendingUp />} title="Observability" description={t.highlights.observabilityDesc} color="from-green-500 to-emerald-500" delay={0.4} />
           </div>
         </div>
       </section>
@@ -64,7 +67,7 @@ export default function HomeHighlights() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Link href="/projects">
             <motion.button whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all">
-              Zobacz projekty
+              {t.highlights.seeProjects}
               <FiArrowRight />
             </motion.button>
           </Link>

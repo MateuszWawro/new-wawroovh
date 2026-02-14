@@ -6,6 +6,7 @@ import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 
 interface BlogPostProps {
   post: {
@@ -18,6 +19,8 @@ interface BlogPostProps {
 }
 
 export default function BlogPost({ post }: BlogPostProps) {
+  const { t, lang } = useLanguage();
+
   return (
     <div className="pt-24 pb-16">
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,7 +31,7 @@ export default function BlogPost({ post }: BlogPostProps) {
             className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 mb-8 cursor-pointer"
           >
             <FiArrowLeft className="mr-2" />
-            Powrót do bloga
+            {t.blog.backToBlog}
           </motion.div>
         </Link>
 
@@ -46,7 +49,7 @@ export default function BlogPost({ post }: BlogPostProps) {
           <div className="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400 mb-6">
             <div className="flex items-center">
               <FiCalendar className="mr-2" />
-              {new Date(post.date).toLocaleDateString('pl-PL', {
+              {new Date(post.date).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',

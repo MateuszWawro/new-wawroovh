@@ -3,9 +3,11 @@
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi';
 import Link from 'next/link';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="bg-gray-900 dark:bg-black transition-colors">
@@ -18,7 +20,7 @@ export default function Footer() {
               Part of <a href="https://wawrophotography.eu" target="_blank" rel="noopener noreferrer" className="text-blue-400 dark:text-blue-300 hover:text-blue-300 dark:hover:text-blue-200 transition-colors">Wawro Photography</a>
               <span className="mx-2 text-gray-600">·</span>
               <Link href="/cookies" className="text-gray-500 hover:text-blue-400 dark:hover:text-blue-300 transition-colors">
-                Polityka cookies
+                {t.footer.cookiePolicy}
               </Link>
             </p>
           </div>

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 import { FiServer, FiShield, FiMonitor, FiTool, FiRefreshCw, FiPower } from 'react-icons/fi';
 
 interface Service {
@@ -40,6 +41,8 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function StatusPage() {
+  const { t } = useLanguage();
+  const ts = t.status;
   const [statusData, setStatusData] = useState<StatusData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -85,10 +88,10 @@ export default function StatusPage() {
             className="text-center mb-12"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-              Homelab Status
+              {ts.title}
             </h1>
             <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Status usług w moim homelab
+              {ts.subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-6">
@@ -112,8 +115,8 @@ export default function StatusPage() {
                 }`} />
                 <span className="text-sm md:text-base">
                   {onlineCount === totalCount
-                    ? 'Wszystkie systemy działają'
-                    : `${onlineCount}/${totalCount} systemów online`}
+                    ? ts.allSystemsOk
+                    : `${onlineCount}/${totalCount} ${ts.systemsOnline}`}
                 </span>
               </motion.div>
 
@@ -125,7 +128,7 @@ export default function StatusPage() {
                 className="px-6 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-semibold disabled:opacity-50 flex items-center gap-2 shadow-lg transition-all"
               >
                 <FiRefreshCw className={loading ? 'animate-spin' : ''} size={18} />
-                <span className="text-sm md:text-base">Odśwież</span>
+                <span className="text-sm md:text-base">{ts.refresh}</span>
               </motion.button>
             </div>
           </motion.div>
@@ -133,7 +136,7 @@ export default function StatusPage() {
           {loading && !statusData ? (
             <div className="text-center py-20">
               <div className="inline-block animate-spin rounded-full h-16 w-16 border-4 border-blue-600 border-t-transparent"></div>
-              <p className="mt-6 text-lg text-gray-600 dark:text-gray-400">Sprawdzanie statusu...</p>
+              <p className="mt-6 text-lg text-gray-600 dark:text-gray-400">{ts.checking}</p>
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

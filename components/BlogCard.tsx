@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { FiCalendar, FiTag } from 'react-icons/fi';
+import { useLanguage } from '@/app/contexts/LanguageContext';
 
 interface BlogCardProps {
   post: {
@@ -16,6 +17,8 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, index }: BlogCardProps) {
+  const { lang } = useLanguage();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -27,7 +30,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
           {/* Date */}
           <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-3">
             <FiCalendar className="mr-2" />
-            {new Date(post.date).toLocaleDateString('pl-PL', {
+            {new Date(post.date).toLocaleDateString(lang === 'pl' ? 'pl-PL' : 'en-US', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
