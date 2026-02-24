@@ -63,7 +63,7 @@ export const translations = {
           field: 'Zarządzanie procesami i usługami IT',
           school: 'WSB Merito Gdańsk',
           years: '2024 - 2026',
-          status: 'W trakcie',
+          status: 'Ukończone',
           thesis: 'Czynniki determinujące skuteczność zarządzania zespołem testerskim w różnych modelach pracy na przykładzie przedsiębiorstwa OPEGIEKA',
         },
         {
@@ -357,7 +357,7 @@ export const translations = {
           field: 'IT Process and Service Management',
           school: 'WSB Merito Gdańsk',
           years: '2024 - 2026',
-          status: 'In progress',
+          status: 'Completed',
           thesis: 'Factors determining the effectiveness of test team management in different work models based on the OPEGIEKA company',
         },
         {
