@@ -199,6 +199,11 @@ export const translations = {
           category: 'Homelab',
         },
         {
+          title: 'Dam-Rob - Strona Produkcyjna',
+          description: 'Produkcyjna wersja strony dam-rob.com.pl. Strona firmowa zbudowana w Vue.js, wdrożona na środowisko produkcyjne po przejściu przez pipeline CI/CD oparty o homelab.',
+          category: 'Strony WWW',
+        },
+        {
           title: 'Homelab Infrastructure',
           description: 'Kompleksowa infrastruktura homelab oparta o Proxmox VE oraz VPS. Self-hosted GitLab do zarządzania kodem, Semaphore UI do automatyzacji z Ansible, Wazuh SIEM do monitoringu bezpieczeństwa, stack Prometheus + Grafana do observability. Infrastructure as Code z Terraform. Wszystko konteneryzowane w Docker i zarządzane przez GitLab CI/CD pipelines.',
           category: 'Homelab',
@@ -491,6 +496,11 @@ export const translations = {
           title: 'Dam-Rob - Test Site',
           description: 'Test site hosted in homelab. Used for testing new features, deployments and CI/CD configurations before production deployment.',
           category: 'Homelab',
+        },
+        {
+          title: 'Dam-Rob - Production Site',
+          description: 'Production version of the dam-rob.com.pl website. A company site built with Vue.js, deployed to the production environment after passing through a homelab-based CI/CD pipeline.',
+          category: 'Websites',
         },
         {
           title: 'Homelab Infrastructure',
