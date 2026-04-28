@@ -16,6 +16,7 @@ const projectsMeta = [
   { url: 'https://wawrophotography.eu', image: '📸', technologies: ['Vue', 'JavaScript', 'CSS'] },
   { url: 'https://agnieszka.wawro.ovh', image: '🏛️', technologies: ['Vue', 'JavaScript', 'CSS'] },
   { url: 'https://dam-rob.wawro.ovh', image: '🧪', technologies: ['Vue', 'JavaScript', 'CSS'] },
+  { url: 'https://dam-rob.com.pl', image: '🏗️', technologies: ['Vue', 'JavaScript', 'CSS'] },
   { url: 'https://gitlab.wawro.ovh', image: '🖥️', technologies: ['Proxmox', 'Docker', 'GitLab', 'Ansible', 'Terraform', 'Wazuh', 'Prometheus', 'Grafana', 'Semaphore UI'] },
   { url: 'https://family.wawro.ovh', image: '👨‍👩‍👧‍👦', technologies: ['Vite', 'SQLite', 'Docker', 'TypeScript'] },
 ];
