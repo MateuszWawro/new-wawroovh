@@ -200,7 +200,7 @@ export const translations = {
         },
         {
           title: 'Dam-Rob - Strona Produkcyjna',
-          description: 'Produkcyjna wersja strony dam-rob.com.pl. Strona firmowa zbudowana w Vue.js, wdrożona na środowisko produkcyjne po przejściu przez pipeline CI/CD oparty o homelab.',
+          description: 'Produkcyjna strona firmowa dam-rob.com.pl zbudowana w Vue.js. Kod przechowywany w repozytorium GitHub, a wdrożenie na hosting klienta odbywa się automatycznie przez GitHub Actions za pomocą FTP.',
           category: 'Strony WWW',
         },
         {
@@ -499,7 +499,7 @@ export const translations = {
         },
         {
           title: 'Dam-Rob - Production Site',
-          description: 'Production version of the dam-rob.com.pl website. A company site built with Vue.js, deployed to the production environment after passing through a homelab-based CI/CD pipeline.',
+          description: 'Production company website dam-rob.com.pl built with Vue.js. Code hosted on GitHub and automatically deployed to the client\'s hosting via FTP using GitHub Actions.',
           category: 'Websites',
         },
         {
