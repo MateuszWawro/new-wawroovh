@@ -240,7 +240,7 @@ export const translations = {
     // Status
     status: {
       title: 'Homelab Status',
-      subtitle: 'Status usług w moim homelab',
+      subtitle: 'Status moich projektów',
       allSystemsOk: 'Wszystkie systemy działają',
       systemsOnline: 'systemów online',
       refresh: 'Odśwież',

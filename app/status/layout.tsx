@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Homelab Status",
-  description: "Status usług w homelab Mateusza Wawro - monitoring dostępności serwerów, CI/CD, bezpieczeństwa i infrastruktury w czasie rzeczywistym.",
+  description: "Status moich projektów - monitoring dostępności serwerów, CI/CD, bezpieczeństwa i infrastruktury w czasie rzeczywistym.",
   openGraph: {
     title: "Homelab Status | Mateusz Wawro",
     description: "Monitoring dostępności usług homelab w czasie rzeczywistym.",
