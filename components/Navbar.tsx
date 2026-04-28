@@ -94,8 +94,11 @@ export default function Navbar() {
             <LanguageToggle />
             <ThemeToggle />
             <button
+              type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
+              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 touch-manipulation"
+              aria-expanded={isOpen}
+              aria-label="Toggle navigation menu"
             >
               {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -106,26 +109,25 @@ export default function Navbar() {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="md:hidden overflow-hidden mt-2 bg-white dark:bg-gray-900 rounded-lg shadow-lg"
+              initial={{ y: -8, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -8, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="md:hidden mt-2 bg-white dark:bg-gray-900 rounded-lg shadow-lg"
             >
               {navItems.map((item) => {
                 const isActive = pathname === item.href;
                 return (
-                  <Link key={item.name} href={item.href}>
-                    <motion.div
-                      whileTap={{ scale: 0.95 }}
-                      className={`block py-3 px-4 text-gray-700 dark:text-gray-300 border-l-4 ${
+                  <Link key={item.name} href={item.href} onClick={() => setIsOpen(false)}>
+                    <div
+                      className={`block py-3 px-4 text-gray-700 dark:text-gray-300 border-l-4 cursor-pointer touch-manipulation select-none ${
                         isActive
                           ? 'border-blue-600 dark:border-blue-400 font-semibold'
                           : 'border-transparent'
-                      } hover:border-blue-600 dark:hover:border-blue-400 transition-all`}
-                      onClick={() => setIsOpen(false)}
+                      } hover:border-blue-600 dark:hover:border-blue-400 transition-all active:opacity-70`}
                     >
                       {item.name}
-                    </motion.div>
+                    </div>
                   </Link>
                 );
               })}
